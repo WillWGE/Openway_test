@@ -1,3 +1,3 @@
 # Openway_test
 
-automation test for periplus website
+automation test for login to website and add product to the cart
