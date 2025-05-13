@@ -5,6 +5,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
 public class PeriplusCartTest {
 
@@ -14,7 +18,7 @@ public class PeriplusCartTest {
     //  User Configuration
     private final String PERIPLUS_URL = "https://www.periplus.com/";
     private final String USER_EMAIL = "willgunawan88@gmail.com";
-    private final String USER_PASSWORD = "";
+    private final String USER_PASSWORD = "admin123";
     private final String PRODUCT_TO_SEARCH = "The Lord of the Rings";
 
 
@@ -29,10 +33,10 @@ public class PeriplusCartTest {
     private final By searchBarLocator = By.name("q"); 
     private final By searchSubmitButtonLocator = By.xpath("//button[@type='submit' and contains(@class,'search')]"); 
     private final By firstProductLinkLocator = By.xpath("(//div[contains(@class,'product-item')]/a)[1]"); 
-    private final By addToCartButtonLocator = By.xpath("//button[contains(text(),'Add to Cart') or contains(text(),'Beli Sekarang')]"); 
+    private final By addToCartButtonLocator = By.xpath("//button[contains(text(),'Add to Cart')]"); 
 
     
-
+    @BeforeClass
     public void setUp() {
     
         ChromeOptions options = new ChromeOptions();
@@ -43,7 +47,7 @@ public class PeriplusCartTest {
         wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // wait time
     }
 
-   
+   @Test(priority = 1, description = "Login to Periplus website")
     public void loginTest() {
         driver.get(PERIPLUS_URL);
 
@@ -84,7 +88,7 @@ public class PeriplusCartTest {
             e.printStackTrace();
         }
     }
-
+    @Test(priority = 2, description = "Search for a product and add it to cart", dependsOnMethods = "loginTest")
     public void addProductToCartTest() {
         // Navigate to homepage again if login redirected elsewhere or to ensure a clean start for search
         // Find the search bar, enter product name, and submit
