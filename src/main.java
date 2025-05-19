@@ -1,3 +1,4 @@
+//import required dependencies
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,7 +16,7 @@ public class PeriplusCartTest {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    //  User Configuration
+    //  User config
     private final String PERIPLUS_URL = "https://www.periplus.com/";
     private final String USER_EMAIL = "willgunawan88@gmail.com";
     private final String USER_PASSWORD = "admin123";
@@ -52,8 +53,6 @@ public class PeriplusCartTest {
         driver.get(PERIPLUS_URL);
 
         // Click on the login icon/link to navigate to the login page
-        // This step might vary based on the website's design.
-        // Sometimes the login form is directly on the homepage or in a modal.
         try {
             WebElement loginIcon = wait.until(ExpectedConditions.elementToBeClickable(loginIconLocator));
             loginIcon.click();
@@ -106,7 +105,6 @@ public class PeriplusCartTest {
 
 
         // Wait for search results and click on the first product
-        // This selector needs to be robust for the product listing.
         WebElement firstProduct = wait.until(ExpectedConditions.elementToBeClickable(firstProductLinkLocator));
         String selectedProductName = firstProduct.getText(); // Or get from an attribute if text is not reliable
         System.out.println("Found product, attempting to click: " + selectedProductName);
