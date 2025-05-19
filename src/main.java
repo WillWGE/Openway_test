@@ -80,7 +80,7 @@ public class PeriplusCartTest {
         System.out.println("Clicked login button.");
 
         // Add a verification step for successful login 
-        System.out.println("Login attempt submitted. Manual verification of success might be needed if no explicit success element is waited for.");
+        System.out.println("Login attempt submitted, waiting to load the page");
          try {
             Thread.sleep(5000); // Static wait
         } catch (InterruptedException e) {
